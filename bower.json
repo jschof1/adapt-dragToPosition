@@ -1,0 +1,17 @@
+{
+  "name": "adapt-dropItems",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nachocinalli/adapt-dropItems.git"
+  },
+  "framework": ">=5.17.2",
+  "version": "1.1.0",
+  "homepage": "https://github.com/nachocinalli/adapt-dropItems",
+  "issues": "https://github.com/nachocinalli/adapt-dropItems/issues",
+  "component": "dropItems",
+  "description": "An dropItems question component",
+  "main": "/js/adapt-dropItems.js",
+  "displayName": "DropItems Question",
+  "keywords": ["adapt-plugin", "adapt-component"],
+  "license": "GPLv3"
+}

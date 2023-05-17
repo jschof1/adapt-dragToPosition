@@ -1,0 +1,50 @@
+.dropitems {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  &__item {
+    width: 25%;
+    position: relative;
+    border: 1px solid transparent;
+    .icon {
+      .icon-move;
+    }
+    &.is-dragging {
+      .icon {
+        .icon-drag;
+      }
+    }
+    &.is-selected {
+      &.is-correct {
+        .icon {
+          .icon-tick;
+        }
+      }
+      &.is-incorrect {
+        .icon {
+          .icon-cross;
+        }
+      }
+    }
+  }
+  &__item > div {
+    user-select: none;
+  }
+  &__item-state {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .icon{
+      padding: .5rem;
+    }
+  }
+  &__dropzone {
+    padding: 2rem;
+    border: 1px solid @black;
+    &.is-active {
+      border: 1px dashed @black;
+    }
+  }
+}
