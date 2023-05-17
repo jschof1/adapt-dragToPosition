@@ -37,20 +37,18 @@ class DraggieView extends Backbone.View {
 
   onDragEnd(event, pointer) {
     const _isOverlap = this.isOverlap(pointer);
-    if (_isOverlap) {
-      this.setPositionTarget();
-    } else {
+    if (!_isOverlap) {
       this.resetPosition();
-
     }
-    this.trigger('dropIt', this, _isOverlap);
+    const droppedPosition = this.getRelativePosition(pointer);
+    // console.log(droppedPosition);
+    this.trigger('dropIt', this, _isOverlap, droppedPosition);
     this.settings.target.removeClass('is-active');
   }
 
   setPositionTarget() {
     const targetPosition = this.settings.target.position();
-    // allow to set anywhere in the target
-    return targetPosition;
+    this.setPosition(targetPosition.top - 64, targetPosition.left);
   }
 
   resetPosition() {
@@ -60,6 +58,15 @@ class DraggieView extends Backbone.View {
   setPosition(top, left) {
     const el = this.settings.el;
     el.animate({ top: `${top}px`, left: `${left}px` });
+  }
+
+  getRelativePosition(pointer) {
+    const targetLocation = this.settings.target[0].getBoundingClientRect();
+    const containerDimensions = this.settings.container[0].getBoundingClientRect();
+    return {
+      x: (pointer.x - targetLocation.left) / containerDimensions.width,
+      y: (pointer.y - targetLocation.top) / containerDimensions.height
+    };
   }
 
   isOverlap(pointer) {
