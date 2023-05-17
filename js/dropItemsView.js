@@ -1,6 +1,5 @@
 import Adapt from "core/js/adapt";
 import QuestionView from "core/js/views/questionView";
-
 import DraggieView from "./draggieView";
 class DropItemsView extends QuestionView {
   preinitialize() {
@@ -101,31 +100,33 @@ class DropItemsView extends QuestionView {
     return positions;
   }
 
-  onDropIt(draggie, value, droppedPosition) {
-    if (!this.model.isInteractive()) return;
-
-    const itemIndex = draggie.model.get("_index");
-    const itemModel = this.model.getItem(itemIndex);
-
-    const correctPositions = this.model.attributes.expectedPositions; // Assuming this is an array of correct positions
-    // only get the first two decimals
-    droppedPosition.x = Math.round(droppedPosition.x * 10) / 10;
-    droppedPosition.y = Math.round(droppedPosition.y * 10) / 10;
-    console.log(droppedPosition);
-
-    const isCorrectlyPlaced = correctPositions.some((expectedPosition) =>
-      this.checkPosition(droppedPosition, expectedPosition)
-    );
-
-    itemModel.toggleActive(isCorrectlyPlaced);
-  }
-
-  checkPosition(droppedPosition, expectedPosition, tolerance = 0.01) {
-    // Tolerance is now a small percentage
+  checkPosition(droppedPosition, expectedPosition, tolerance = 0.1) {
     return (
       Math.abs(droppedPosition.x - expectedPosition.x) <= tolerance &&
       Math.abs(droppedPosition.y - expectedPosition.y) <= tolerance
     );
+  }
+
+
+  onDropIt(draggie, value, droppedPosition) {
+    if (!this.model.isInteractive()) return;
+  
+    const itemIndex = draggie.model.get("_index");
+    const itemModel = this.model.getItem(itemIndex);
+  
+    const correctPositions = this.model.attributes.expectedPositions;
+    droppedPosition.x = Math.round(droppedPosition.x * 10) / 10;
+    droppedPosition.y = Math.round(droppedPosition.y * 10) / 10;
+    console.log(droppedPosition);
+  
+    const tolerance = 0.0; // Adjust this value as needed
+    const isCorrectlyPlaced = correctPositions.some((expectedPosition) =>
+      this.checkPosition(droppedPosition, expectedPosition, tolerance)
+    );
+  
+    console.log(isCorrectlyPlaced);
+    console.log(itemIndex)
+    itemModel.toggleActive(value);
   }
 
   resetQuestion() {
@@ -134,13 +135,18 @@ class DropItemsView extends QuestionView {
   }
 
   showCorrectAnswer() {
-    this.draggies.forEach((draggie) => {
+    const correctPositions = this.model.attributes.expectedPositions;
+    this.draggies.forEach((draggie, index) => {
+      // ensure we don't go out of bounds if there are fewer positions than draggies
+      const correctPosition = correctPositions[index % correctPositions.length];
+
       if (draggie.model.get("_shouldBeSelected")) {
-        draggie.setPositionTarget();
+        draggie.setPositionTarget(correctPosition);
       } else {
         draggie.resetPosition();
       }
     });
+
     this.model.set("_isCorrectAnswerShown", true);
   }
 

@@ -46,9 +46,10 @@ class DraggieView extends Backbone.View {
     this.settings.target.removeClass('is-active');
   }
 
-  setPositionTarget() {
-    const targetPosition = this.settings.target.position();
-    this.setPosition(targetPosition.top - 64, targetPosition.left);
+  setPositionTarget(targetPosition) {
+    const top = targetPosition.y * this.settings.container.height();
+    const left = targetPosition.x * this.settings.container.width();
+    this.setPosition(top, left);
   }
 
   resetPosition() {
