@@ -110,13 +110,13 @@ class DropItemsView extends QuestionView {
     const correctPositions = this.model.attributes.expectedPositions; // Assuming this is an array of correct positions
     droppedPosition.x = Math.round(droppedPosition.x * 10) / 10;
     droppedPosition.y = Math.round(droppedPosition.y * 10) / 10;
-    console.log(droppedPosition);
 
     const isCorrectlyPlaced = correctPositions.some((expectedPosition) =>
       this.checkPosition(droppedPosition, expectedPosition)
     );
 
-    console.log(isCorrectlyPlaced);
+    console.log(correctPositions);
+    console.log(droppedPosition);
 
     const allItemsInDropzone = this.draggies.every(draggie => draggie.isDraggedIntoDropzone);
     // console.log(allItemsInDropzone);
@@ -127,8 +127,7 @@ class DropItemsView extends QuestionView {
     }
   }
 
-  checkPosition(droppedPosition, expectedPosition, tolerance = 0.01) {
-    // Tolerance is now a small percentage
+  checkPosition(droppedPosition, expectedPosition, tolerance = 0.1) {
     return (
       Math.abs(droppedPosition.x - expectedPosition.x) <= tolerance &&
       Math.abs(droppedPosition.y - expectedPosition.y) <= tolerance
@@ -141,13 +140,15 @@ class DropItemsView extends QuestionView {
   }
 
   showCorrectAnswer() {
-    
     this.draggies.forEach((draggie) => {
-      if (draggie.model.get("_shouldBeSelected")) {
-        draggie.setPositionTarget();
-      } else {
-        draggie.resetPosition();
-      }
+      // if (draggie.model.get("_shouldBeSelected")) {
+      //   draggie.setPositionTarget();
+      // } else {
+      //   draggie.resetPosition();
+      // }
+      $(draggie.el).animate({ opacity: 0 });
+      // fade in my answer
+
     });
     this.model.set("_isCorrectAnswerShown", true);
   }
@@ -155,11 +156,7 @@ class DropItemsView extends QuestionView {
   hideCorrectAnswer() {
     if (!this.draggies[0]) return;
     this.model.get("_userAnswer").forEach((answer, index) => {
-      if (answer) {
-        this.draggies[index].setPositionTarget();
-      } else {
-        this.draggies[index].resetPosition();
-      }
+      $(this.draggies[index].el).animate({ opacity: 1 });
     });
     this.model.set("_isCorrectAnswerShown", false);
   }
