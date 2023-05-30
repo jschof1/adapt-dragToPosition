@@ -41,15 +41,15 @@ class DraggieView extends Backbone.View {
       this.resetPosition();
     }
     const droppedPosition = this.getRelativePosition(pointer);
+    this.isDraggedIntoDropzone = _isOverlap;
     // console.log(droppedPosition);
     this.trigger('dropIt', this, _isOverlap, droppedPosition);
     this.settings.target.removeClass('is-active');
   }
 
-  setPositionTarget(targetPosition) {
-    const top = targetPosition.y * this.settings.container.height();
-    const left = targetPosition.x * this.settings.container.width();
-    this.setPosition(top, left);
+  setPositionTarget() {
+    const targetPosition = this.settings.target.position();
+    this.setPosition(targetPosition.top - 64, targetPosition.left);
   }
 
   resetPosition() {
