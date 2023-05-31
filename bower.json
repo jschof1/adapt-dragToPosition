@@ -5,10 +5,10 @@
     "url": "https://github.com/jschof1/adapt-dragToPosition"
   },
   "framework": ">=5.17.2",
-  "version": "0.01",
+  "version": "0.02",
   "homepage": "https://github.com/jschof1/adapt-dragToPosition",
   "issues": "https://github.com/jschof1/adapt-dragToPosition/issues",
-  "component": "drag to position",
+  "component": "dragToPosition",
   "description": "An drag to position question component",
   "main": "/js/adapt-dragToPosition.js",
   "displayName": "DragToPosition Question",
