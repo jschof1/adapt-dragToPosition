@@ -192,16 +192,6 @@
               "type": "object",
               "required": true,
               "properties": {
-                "id": {
-                  "type": "string",
-                  "required": true,
-                  "title": "ID",
-                  "inputType": "Text",
-                  "validators": [
-                    "required"
-                  ],
-                  "help": "ID of the position"
-                },
                 "x": {
                   "type": "number",
                   "required": true,
@@ -212,7 +202,7 @@
                     "required",
                     "number"
                   ],
-                  "help": "X coordinate of position (percentage)"
+                  "help": "X coordinate of position - decimals - 0.5 is the middle of the dropzone"
                 },
                 "y": {
                   "type": "number",
@@ -224,7 +214,7 @@
                     "required",
                     "number"
                   ],
-                  "help": "Y coordinate of position (percentage)"
+                  "help": "Y coordinate of position - decimals - 0.5 is the middle of the dropzone"
                 }
               }
             }

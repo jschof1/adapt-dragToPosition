@@ -2,7 +2,7 @@
 import React from "react";
 import { templates, classes, html, compile } from "core/js/reactHelpers";
 
-export default function DropItems(props) {
+export default function dragToPosition(props) {
   // const ariaLabels = Adapt.course.get('_globals')._accessibility._ariaLabels;
 
   const {
