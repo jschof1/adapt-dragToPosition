@@ -1,36 +1,59 @@
 {
-  "_id": "c-05",
-  "_parentId": "b-22",
+  "_id": "c-drop",
+  "_parentId": "b-drop",
   "_type": "component",
-  "_component": "dropItems",
+  "_component": "dragToPosition",
   "_classes": "",
   "_layout": "full",
-  "title": "Drop items",
-  "displayTitle": "Drop items",
+  "title": "Drag To Position",
+  "displayTitle": "Drag To Position",
   "body": "",
   "instruction": "",
   "_attempts": 1,
-  "_shouldDisplayAttempts": false,
+  "_shouldDisplayAttempts": true,
   "_shouldResetAllAnswers": false,
-  "_isRandom": false,
+  "_isRandom": true,
   "_questionWeight": 1,
   "_canShowModelAnswer": true,
   "_canShowFeedback": true,
   "_canShowMarking": true,
-  "_recordInteaction": true,
+  "_recordInteraction": true,
   "_hasItemScoring": true,
+  "_userAnswer" : [],
+  "expectedPositions": [
+    {
+      "id": "1",
+      "x": 0.2,
+      "y": 0.6
+    },
+    {
+      "id": "2",
+      "x": 0.5,
+      "y": 0.6
+    },
+    {
+      "id": "3",
+      "x": 0.8,
+      "y": 0.6
+    }
+  ],
   "_graphic": {
-    "large": "course/en/images/single-width.png",
-    "small": "course/en/images/single-width.png",
+    "large": "course/en/images/spectrum.png",
+    "small": "course/en/images/spectrum.png",
     "alt": ""
   },
+  "_correctAnswerGraphic": {
+    "large": "course/en/images/spectrum-correct.jpg",
+    "small": "course/en/images/spectrum-correct.jpg",
+    "alt": ""
+  },      
   "_items": [
     {
       "title": "Title drag 1",
       "body": "Body drag 1",
       "_graphic": {
-        "large": "course/en/images/single-width.png",
-        "small": "course/en/images/single-width.png",
+        "large": "course/en/images/closed.png",
+        "small": "course/en/images/closed.png",
         "alt": ""
       },
       "_shouldBeSelected": true
@@ -39,8 +62,8 @@
       "title": "Title drag 2",
       "body": "Body drag 2",
       "_graphic": {
-        "large": "course/en/images/single-width.png",
-        "small": "course/en/images/single-width.png",
+        "large": "course/en/images/shared.png",
+        "small": "course/en/images/shared.png",
         "alt": ""
       },
       "_shouldBeSelected": true
@@ -49,11 +72,11 @@
       "title": "Title drag 3",
       "body": "Body drag 3",
       "_graphic": {
-        "large": "course/en/images/single-width.png",
-        "small": "course/en/images/single-width.png",
+        "large": "course/en/images/open.png",
+        "small": "course/en/images/open.png",
         "alt": ""
       },
-      "_shouldBeSelected": false
+      "_shouldBeSelected": true
     }
   ],
   "_feedback": {
@@ -92,4 +115,4 @@
     "remainingAttemptsText": "attempts remaining",
     "remainingAttemptText": "final attempt"
   }
-}
+},

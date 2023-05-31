@@ -1,17 +1,17 @@
 {
-  "name": "adapt-dropItems",
+  "name": "adapt-dragToPosition",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nachocinalli/adapt-dropItems.git"
+    "url": "https://github.com/jschof1/adapt-dragToPosition"
   },
   "framework": ">=5.17.2",
-  "version": "1.1.0",
-  "homepage": "https://github.com/nachocinalli/adapt-dropItems",
-  "issues": "https://github.com/nachocinalli/adapt-dropItems/issues",
-  "component": "dropItems",
-  "description": "An dropItems question component",
-  "main": "/js/adapt-dropItems.js",
-  "displayName": "DropItems Question",
+  "version": "0.01",
+  "homepage": "https://github.com/jschof1/adapt-dragToPosition",
+  "issues": "https://github.com/jschof1/adapt-dragToPosition/issues",
+  "component": "drag to position",
+  "description": "An drag to position question component",
+  "main": "/js/adapt-dragToPosition.js",
+  "displayName": "DragToPosition Question",
   "keywords": ["adapt-plugin", "adapt-component"],
   "license": "GPLv3"
 }

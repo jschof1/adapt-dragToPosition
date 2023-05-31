@@ -2,7 +2,7 @@ import Adapt from "core/js/adapt";
 import QuestionView from "core/js/views/questionView";
 
 import DraggieView from "./draggieView";
-class DropItemsView extends QuestionView {
+class dragToPositionView extends QuestionView {
   preinitialize() {
     this.draggies = [];
   }
@@ -118,6 +118,8 @@ class DropItemsView extends QuestionView {
     console.log(correctPositions);
     console.log(droppedPosition);
 
+    itemModel.toggleActive(isCorrectlyPlaced);
+
     const allItemsInDropzone = this.draggies.every(draggie => draggie.isDraggedIntoDropzone);
     // console.log(allItemsInDropzone);
     if (allItemsInDropzone) {
@@ -161,6 +163,6 @@ class DropItemsView extends QuestionView {
     this.model.set("_isCorrectAnswerShown", false);
   }
 }
-DropItemsView.template = "drop-items.jsx";
+dragToPositionView.template = "drag-to-position.jsx";
 
-export default DropItemsView;
+export default dragToPositionView;
