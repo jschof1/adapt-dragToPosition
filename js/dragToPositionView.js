@@ -95,7 +95,7 @@ class dragToPositionView extends QuestionView {
     const positions = this.draggies.map((draggie) => {
       return {
         item: draggie.model.get("_index"),
-        position: draggie.getRelativePosition()
+        position: draggie.getRelativePosition(),
       };
     });
     return positions;
@@ -103,29 +103,32 @@ class dragToPositionView extends QuestionView {
 
   onDropIt(draggie, value, droppedPosition) {
     if (!this.model.isInteractive()) return;
-
     const itemIndex = draggie.model.get("_index");
     const itemModel = this.model.getItem(itemIndex);
-
-    const correctPositions = this.model.attributes.expectedPositions; // Assuming this is an array of correct positions
+    const correctPosition = itemModel.get("expectedPositions")[0];
     droppedPosition.x = Math.round(droppedPosition.x * 10) / 10;
     droppedPosition.y = Math.round(droppedPosition.y * 10) / 10;
-
-    const isCorrectlyPlaced = correctPositions.some((expectedPosition) =>
-      this.checkPosition(droppedPosition, expectedPosition)
+    const isCorrectlyPlaced = this.checkPosition(
+      droppedPosition,
+      correctPosition
     );
-
-    console.log(correctPositions);
-    console.log(droppedPosition);
-
     itemModel.toggleActive(isCorrectlyPlaced);
+    this.checkAllItemsPlacedCorrectly();
+  }
 
-    const allItemsInDropzone = this.draggies.every(draggie => draggie.isDraggedIntoDropzone);
-    // console.log(allItemsInDropzone);
-    if (allItemsInDropzone) {
-      itemModel.toggleActive(true);
+  checkAllItemsPlacedCorrectly() {
+    const allItemsPlacedCorrectly = this.draggies.every((draggie) => {
+      const droppedPosition = draggie.getRelativePosition();
+      const itemIndex = draggie.model.get("_index");
+      const itemModel = this.model.getItem(itemIndex);
+      const correctPosition = itemModel.get("expectedPositions")[0];
+      return this.checkPosition(droppedPosition, correctPosition);
+    });
+
+    if (allItemsPlacedCorrectly) {
+      this.model.set("_isAtLeastOneCorrectSelection", true); // Assuming this property exists in your model
     } else {
-      itemModel.toggleActive(false);
+      this.model.set("_isAtLeastOneCorrectSelection", false);
     }
   }
 
@@ -150,7 +153,6 @@ class dragToPositionView extends QuestionView {
       // }
       $(draggie.el).animate({ opacity: 0 });
       // fade in my answer
-
     });
     this.model.set("_isCorrectAnswerShown", true);
   }

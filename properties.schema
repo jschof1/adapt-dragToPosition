@@ -86,7 +86,7 @@
     },
     "_correctAnswerGraphic": {
       "type": "object",
-      "required": false,
+      "required": true,
       "title": "Dropzone Correct Answer Graphic",
       "properties": {
         "large": {
@@ -183,51 +183,51 @@
             "title": "Correct answer?",
             "inputType": "Checkbox",
             "validators": []
-          }
-        }
-      }
-    },
-    "expectedPositions": {
-      "type": "array",
-      "required": true,
-      "title": "Expected Positions",
-      "items": {
-        "type": "object",
-        "required": true,
-        "properties": {
-          "id": {
-            "type": "string",
-            "required": true,
-            "title": "ID",
-            "inputType": "Text",
-            "validators": [
-              "required"
-            ],
-            "help": "ID of the position"
           },
-          "x": {
-            "type": "number",
+          "expectedPositions": {
+            "type": "array",
             "required": true,
-            "default": 0,
-            "title": "X",
-            "inputType": "Number",
-            "validators": [
-              "required",
-              "number"
-            ],
-            "help": "X coordinate of position (percentage)"
-          },
-          "y": {
-            "type": "number",
-            "required": true,
-            "default": 0,
-            "title": "Y",
-            "inputType": "Number",
-            "validators": [
-              "required",
-              "number"
-            ],
-            "help": "Y coordinate of position (percentage)"
+            "title": "Expected Positions",
+            "items": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "required": true,
+                  "title": "ID",
+                  "inputType": "Text",
+                  "validators": [
+                    "required"
+                  ],
+                  "help": "ID of the position"
+                },
+                "x": {
+                  "type": "number",
+                  "required": true,
+                  "default": 0,
+                  "title": "X",
+                  "inputType": "Number",
+                  "validators": [
+                    "required",
+                    "number"
+                  ],
+                  "help": "X coordinate of position (percentage)"
+                },
+                "y": {
+                  "type": "number",
+                  "required": true,
+                  "default": 0,
+                  "title": "Y",
+                  "inputType": "Number",
+                  "validators": [
+                    "required",
+                    "number"
+                  ],
+                  "help": "Y coordinate of position (percentage)"
+                }
+              }
+            }
           }
         }
       }
